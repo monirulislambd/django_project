@@ -1,0 +1,81 @@
+{% extends "app/base.html" %}
+{% load static  %}
+
+{% block title %}Product Details{% endblock title %}
+
+{% block main-content %}
+
+
+<div class="container-fluid my-5">
+    <div class="row">
+
+        <div class="col-sm-2 border-end">
+            {% for c in p_category %}
+
+            <div class = "list-group">
+                <a href="{% url 'product-details' c.id %}" class="list-group-item list-group-item-action" aria-current="true">
+                    
+                    {{c.title}}
+                </a>
+             </div>
+                
+           
+
+            {% endfor %}
+            
+        </div>
+        <div class="col-sm-4 border-end">
+            {% for prod in product %}
+                
+                <h4 class="text-center bg-warning fw-bold mx-5 py-3 rounded mb-4">{{prod.title}}</h4>
+                <img  src="{{prod.product_image.url}}" width="300px"  />
+
+            {% endfor %}      
+             
+            
+        </div>
+        
+       
+    
+
+
+        <div class="col-sm-6">
+            <div class="row">
+                {% for prod in product %}
+                <h6>{{prod.category}}</h6>
+                    <div class="col text-center mb-4 ">
+                        
+                        <div >
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td>Price</td>
+                                    <td>BDT {{prod.selling_price}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Discounted Price</td>
+                                    <td>BDT {{prod.discounted_price}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Description</td>
+                                    <td ><p class="text-justify"> {{prod.description}} </p></td>
+                                </tr>
+                                <tr>
+                                    <td>Composition</td>
+                                    <td class="text-justify"> {{prod.composition}}</td>
+                                </tr>
+                            </table>
+                                <div class="fw-bold">
+                                    <a href="" class="btn btn-warning fw-bold w-50 mt-2">Add to Cart</a>
+                                    <a href="" class="btn btn-secondary fw-bold w-50 mt-2">Final</a>
+                                </div>
+                        </div>
+                    
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main-content %}
